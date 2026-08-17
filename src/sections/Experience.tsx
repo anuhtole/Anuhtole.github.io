@@ -20,10 +20,11 @@ const ENTRIES: ExperienceEntry[] = [
     period: 'Jun 2026 – Present',
     mark: <MicrosoftMark />,
     bullets: [
-      'Built an end-to-end closed-loop optimization engine for contact-center voice agents, converting live conversations into evidence-backed knowledge, tool, routing, and configuration changes gated by dual-model adversarial evaluation.',
-      'Designed a six-layer evaluation framework spanning groundedness, pre-deployment quality scoring, case regression, expert labeling, and post-deployment outcome measurement, with every change gated behind maker approval and staged rollout.',
-      'Built a deterministic, seeded synthetic-data pipeline generating 65 labeled human-agent interactions across 5 failure modes plus 15 healthy regression controls, driving failure taxonomy, prompt optimization, regression testing, and cross-model evaluation.',
-      'Built ContextPilot, a recoverability-aware context optimizer for long-running AI agents using ski-rental token economics: backtests across 10,000 simulated sessions project ~50% token-cost reduction, validated with 0 unsafe releases on 460 live shadow decisions.',
+      'Built an end-to-end closed-loop optimization engine for contact-center voice agents, converting live conversations into evidence-backed knowledge, tool, routing, and configuration improvements gated by dual-model adversarial evaluation; now in private preview testing with Fortune 500 customers.',
+      'Designed the six-layer data and processing architecture with an eight-stage idempotent analysis pipeline, and authored a 17-section build-ready system specification for the engine, endorsed by the engineering team, data science team, and VP of Product.',
+      'Designed an eight-layer evaluation framework spanning groundedness, cluster quality, pre-deployment quality scoring, case regression, expert labeling, and post-deployment outcome measurement, with every change gated behind maker approval and staged rollout.',
+      'Built a deterministic, seeded synthetic-data pipeline generating 300+ labeled human-agent interactions across 5 failure modes plus 15 healthy regression controls, driving failure taxonomy, prompt optimization, regression testing, and cross-model evaluation.',
+      'Built ContextPilot, a recoverability-aware context optimizer for long-running AI agents using ski-rental token economics: backtests across 10,000 simulated sessions project ~50% token-cost reduction, validated with 0 unsafe releases on 500+ live shadow sessions.',
     ],
   },
   {
