@@ -15,7 +15,7 @@ const PROJECTS: Project[] = [
   {
     name: 'Spine',
     tagline: 'Governance and control plane for AI agents',
-    meta: 'Co-founder · Apr 2026 – Jun 2026',
+    meta: 'Co-founder · Apr 2026 – Aug 2026',
     art: './art/wheat-field.jpg',
     artAlt: 'Van Gogh painting of a wheat field with cypresses',
     github: 'https://github.com/Anuhtole/Spine',
@@ -30,7 +30,7 @@ const PROJECTS: Project[] = [
   {
     name: 'CostShield',
     tagline: 'Metering AI-agent traffic by cost, not count',
-    meta: '2026',
+    meta: 'Jun 2026 – Jul 2026',
     art: './art/cafe-terrace.jpg',
     artAlt: 'Van Gogh painting of a café terrace at night',
     github: 'https://github.com/Anuhtole/CostShield',
