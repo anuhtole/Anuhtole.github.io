@@ -1,5 +1,7 @@
 import { Reveal } from '../components/Reveal'
 import { SectionHeading } from '../components/SectionHeading'
+import { PublicationNote } from '../components/PublicationNote'
+import type { Publication } from '../components/PublicationNote'
 
 type Project = {
   name: string
@@ -9,6 +11,7 @@ type Project = {
   artAlt: string
   bullets: string[]
   github?: string
+  publication?: Publication
 }
 
 const PROJECTS: Project[] = [
@@ -19,6 +22,14 @@ const PROJECTS: Project[] = [
     art: './art/wheat-field.jpg',
     artAlt: 'Van Gogh painting of a wheat field with cypresses',
     github: 'https://github.com/Anuhtole/Spine',
+    publication: {
+      title: 'Order Integrity for Agentic DNA Synthesis Under Prompt Injection',
+      authors: 'Vishnu Rajeev and Anatole Seychal',
+      venue: 'NeurIPS 2026 · AgenticLS Workshop',
+      status: 'Accepted',
+      openReviewUrl: 'https://openreview.net/forum?id=jhSn7fQiuu',
+      pdfPath: 'spine-paper.pdf',
+    },
     bullets: [
       'Synchronous policy-enforcement gateway intercepts every agent tool call pre-execution, evaluating a default-deny rule engine at sub-50ms p99 with Redis-cached policies and Prometheus-instrumented latency histograms.',
       'Context-isolated plan reviewer validates each action via a separate LLM call whose input is structurally restricted to the declared plan and action metadata, never the worker agent’s prompts or tool outputs: prompt injection is blocked by construction, and CI isolation tests enforce it.',
@@ -96,6 +107,7 @@ function ProjectCard({ project }: { project: Project }) {
               </li>
             ))}
           </ul>
+          {project.publication && <PublicationNote publication={project.publication} />}
           {project.github && (
             <a
               href={project.github}
