@@ -58,8 +58,9 @@ const PROJECTS: Project[] = [
     meta: 'Personal project · Jan 2026 – Mar 2026',
     art: './art/water-lilies.jpg',
     artAlt: 'Monet painting of water lilies',
+    github: 'https://github.com/anuhtole/hatch',
     bullets: [
-      'Streaming chat agent (Next.js, TypeScript, Prisma) exposing 30 model-callable tools across email, calendar, Drive, and Canvas, backed by 97 API routes and 21 database models.',
+      'Streaming chat agent (Next.js, TypeScript, Prisma) exposing 31 model-callable tools across email, calendar, Drive, and Canvas, backed by 107 API routes and 21 database models.',
       'Retrieval-augmented knowledge base ingests and syncs email, Drive, and Canvas content into SQLite with vector embeddings, surfacing relevant context into every chat.',
       'Never-send-autonomously as a structural property: the model has no send tool at all, every mutating action queues as a pending approval card, and drafts go out only on an explicit user click.',
       'Vault-grounded resume builder with layered anti-fabrication guards: numeric provenance checks, a strict metric allow-list, and per-sentence drift guards tracing every claim to a cited source.',
