@@ -1,4 +1,5 @@
 import type { MouseEvent } from 'react'
+import { RESUME_HREF } from '../lib/links'
 import { scrollToSection } from '../lib/scroll'
 
 const SECTION_LINKS = [
@@ -43,7 +44,7 @@ export function Nav() {
             ))}
           </ul>
           <a
-            href={`${import.meta.env.BASE_URL}resume.pdf`}
+            href={RESUME_HREF}
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-xs border border-gold/60 px-3 py-1.5 font-mono text-xs tracking-[0.18em] uppercase text-gold transition-colors hover:bg-gold/10"

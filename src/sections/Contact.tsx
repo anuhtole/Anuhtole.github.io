@@ -1,4 +1,5 @@
 import { Reveal } from '../components/Reveal'
+import { RESUME_HREF } from '../lib/links'
 import { SectionHeading } from '../components/SectionHeading'
 import { EmailButton } from '../components/EmailButton'
 
@@ -36,7 +37,7 @@ export function Contact() {
             GitHub &#8599;
           </a>
           <a
-            href={`${import.meta.env.BASE_URL}resume.pdf`}
+            href={RESUME_HREF}
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-xs border border-line px-5 py-2.5 text-ink-dim transition-colors hover:border-gold/60 hover:text-ink"
