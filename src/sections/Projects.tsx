@@ -11,14 +11,16 @@ type Project = {
   artAlt: string
   bullets: string[]
   github?: string
+  highlight?: string
   publication?: Publication
 }
 
 const PROJECTS: Project[] = [
   {
     name: 'Spine',
-    tagline: 'Governance and control plane for AI agents',
-    meta: 'Co-founder · Apr 2026 – Aug 2026',
+    tagline: 'Agent security and compliance layer for AI agents',
+    highlight: '10+ companies in beta · YC top 3%',
+    meta: 'Co-founder · Apr 2026 – Present',
     art: './art/wheat-field.jpg',
     artAlt: 'Van Gogh painting of a wheat field with cypresses',
     github: 'https://github.com/Anuhtole/Spine',
@@ -31,11 +33,11 @@ const PROJECTS: Project[] = [
       pdfPath: 'spine-paper.pdf',
     },
     bullets: [
-      'Synchronous policy-enforcement gateway intercepts every agent tool call pre-execution, evaluating a default-deny rule engine at sub-50ms p99 with Redis-cached policies and Prometheus-instrumented latency histograms.',
-      'Context-isolated plan reviewer validates each action via a separate LLM call whose input is structurally restricted to the declared plan and action metadata, never the worker agent’s prompts or tool outputs: prompt injection is blocked by construction, and CI isolation tests enforce it.',
-      'Per-session drift scoring with an exponential-moving-average accumulator and configurable flag and block thresholds; crossing the block threshold hard-stops off-plan actions synchronously.',
-      'Hash-chained, tamper-evident audit log where every event commits to its predecessor’s hash, with on-demand chain verification that detects any insertion, modification, or deletion.',
-      'Eight specialized LLM behavioral monitors (exfiltration, PII, privilege escalation, rate abuse, and more) on a bounded tool-use runtime; 117-test backend suite red-teamed in CI with adversarial injection payloads. Two paying pilots.',
+      'Co-authored a NeurIPS 2026 workshop paper on plan-bound monitoring: across prompt-injected DNA synthesis orders, the plan-bound monitor blocked 30/30 redirected orders where a static-rule baseline let 22 through.',
+      'Co-designed the default-deny tool-call gate (p99 under 50 ms) that intercepts every agent action pre-execution, a hash-chained tamper-evident audit log, and a context-isolated plan reviewer that untrusted data never reaches, so prompt injection is blocked by construction.',
+      'Ran a pre-registered AgentDojo study (1,312 attacks across 22 agent LLMs): the isolated monitor matched full-context attack-success rate at 21x lower cost.',
+      'Wrote the threat model and a 165-case prompt-injection corpus that red-teams the reviewer in CI, making isolation a tested invariant rather than a design intention.',
+      'Per-session drift scoring with an exponential-moving-average accumulator and configurable flag and block thresholds, plus eight LLM behavioral monitors (exfiltration, PII, privilege escalation, rate abuse) on a bounded tool-use runtime.',
     ],
   },
   {
@@ -98,6 +100,11 @@ function ProjectCard({ project }: { project: Project }) {
             </p>
           </div>
           <p className="mt-2 text-lg leading-relaxed text-ink-dim">{project.tagline}</p>
+          {project.highlight && (
+            <p className="mt-2 font-mono text-xs tracking-[0.18em] uppercase text-gold">
+              {project.highlight}
+            </p>
+          )}
           <ul className="mt-5 space-y-3">
             {project.bullets.map((bullet) => (
               <li
