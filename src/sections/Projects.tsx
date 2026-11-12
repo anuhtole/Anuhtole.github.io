@@ -69,18 +69,6 @@ const PROJECTS: Project[] = [
       'Cross-session memory extracts structured facts with trust-aware injection that protects user-edited facts from being auto-overwritten.',
     ],
   },
-  {
-    name: 'AutoMate',
-    tagline: 'AI vehicle-buying platform built at Berkeley',
-    meta: 'Co-founder · SWE & PM · Mar 2024 – Jun 2024',
-    art: './art/impression-sunrise.jpg',
-    artAlt: 'Monet painting of a harbor at sunrise',
-    bullets: [
-      'Prompt-tuned LLM extracts buyer preferences through natural chat, powering a heap-based recommendation engine that ranks listings by match and deal quality.',
-      'End-to-end data pipelines ingest, clean, and standardize Craigslist vehicle-listing datasets to feed the live ranking engine.',
-      'Random Forest model predicts fair market value per vehicle, powering a deal-score system that flags overpriced listings and surfaces good deals.',
-    ],
-  },
 ]
 
 function ProjectCard({ project }: { project: Project }) {
