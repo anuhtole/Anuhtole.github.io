@@ -3,7 +3,7 @@ export type Publication = {
   authors: string
   venue: string
   status: string
-  openReviewUrl: string
+  openReviewUrl?: string
   pdfPath: string
 }
 
@@ -35,19 +35,21 @@ export function PublicationNote({ publication }: { publication: Publication }) {
       </p>
       <p className="mt-1.5 text-sm text-ink-dim">{publication.authors}</p>
       <div className="mt-4 flex flex-wrap gap-3">
-        <a
-          href={publication.openReviewUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`${LINK_CLASS} border-gold/60 text-gold hover:bg-gold/10`}
-        >
-          OpenReview &#8599;
-        </a>
+        {publication.openReviewUrl && (
+          <a
+            href={publication.openReviewUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`${LINK_CLASS} border-gold/60 text-gold hover:bg-gold/10`}
+          >
+            OpenReview &#8599;
+          </a>
+        )}
         <a
           href={pdfHref}
           target="_blank"
           rel="noopener noreferrer"
-          className={`${LINK_CLASS} border-line text-ink-dim hover:border-gold/60 hover:text-ink`}
+          className={`${LINK_CLASS} ${publication.openReviewUrl ? 'border-line text-ink-dim hover:border-gold/60 hover:text-ink' : 'border-gold/60 text-gold hover:bg-gold/10'}`}
         >
           Paper · PDF &#8599;
         </a>
