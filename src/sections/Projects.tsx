@@ -33,7 +33,7 @@ const PROJECTS: Project[] = [
     github: 'https://github.com/Anuhtole/Spine',
     publication: {
       title: 'Order Integrity for Agentic DNA Synthesis Under Prompt Injection',
-      authors: 'Vishnu Rajeev and Anatole Seychal',
+      authors: 'Anatole Seychal and Vishnu Rajeev',
       venue: 'NeurIPS 2026 · AgenticLS Workshop',
       status: 'Accepted',
       openReviewUrl: 'https://openreview.net/forum?id=jhSn7fQiuu',
