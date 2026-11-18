@@ -13,6 +13,13 @@ type Project = {
   github?: string
   highlight?: string
   publication?: Publication
+  figure?: Figure
+}
+
+type Figure = {
+  src: string
+  alt: string
+  caption: string
 }
 
 const PROJECTS: Project[] = [
@@ -38,6 +45,46 @@ const PROJECTS: Project[] = [
       'Ran a pre-registered AgentDojo study (1,312 attacks across 22 agent LLMs): the isolated monitor matched full-context attack-success rate at 21x lower cost.',
       'Wrote the threat model and a 165-case prompt-injection corpus that red-teams the reviewer in CI, making isolation a tested invariant rather than a design intention.',
       'Per-session drift scoring with an exponential-moving-average accumulator and configurable flag and block thresholds, plus eight LLM behavioral monitors (exfiltration, PII, privilege escalation, rate abuse) on a bounded tool-use runtime.',
+    ],
+  },
+  {
+    name: 'ContextPilot',
+    tagline: 'When should an AI agent compact its context? An economics answer.',
+    meta: 'Solo research · Oct 2026 – Present',
+    art: './art/starry-night.jpg',
+    artAlt: 'Van Gogh painting of a swirling night sky over a village',
+    github: 'https://github.com/anuhtole/contextpilot',
+    figure: {
+      src: './figures/contextpilot-flatness.png',
+      alt: 'Chart of steady-state cost against the history size at which compaction triggers, under four cache-pricing regimes, with the optimum marked for each',
+      caption: 'Steady-state cost of a compaction trigger relative to the optimum. The optimal point moves with cache pricing, not with the context window.',
+    },
+    bullets: [
+      'Reframes compaction timing for long-running coding agents as rent-or-buy under real prompt-cache pricing: carrying history is rent on every call, compacting is a one-time buy. In steady state the optimum is the Economic Order Quantity, H* = σ + √(2gA/h), and it does not depend on the context window.',
+      'Cost model with every term measured from Claude Code’s usage counters (post-compaction size, summary output, cache-prefix eviction, re-fetch) reproduces real bills to within 0.8% on 18 pilot runs and 12 held-out high-growth runs.',
+      'Shows the 150k-token API default is near-optimal for Claude-priced coding agents while near-window triggers on 1M-token models cost 20–28% more; an online break-even rule stays within 1.6% of the hindsight-best threshold across 17 pricing regimes, where a threshold tuned once loses up to 16.5%.',
+      'Replayed 40 real sessions (2,773 calls) against Claude Code’s actual auto-compaction point: the online rule would have cost 12.1% less, within one point of per-session hindsight. Shipped a `recommend` CLI that fits a user’s own logs and prints the trigger and autoCompactWindow to set.',
+      'Sixty-plus pre-registered real-agent runs, including a dose-response study finding no measurable recall loss per compaction (slope −0.05, 95% CI −0.39 to +0.32); a failed −35% savings prediction is reported and decomposed in the paper rather than dropped.',
+    ],
+  },
+  {
+    name: 'Recoup',
+    tagline: 'Finds the money your vendors owe you, with the receipts to get it back',
+    meta: 'Team of three · Oct 2026 – Nov 2026',
+    art: './art/impression-sunrise.jpg',
+    artAlt: 'Monet painting of a harbor at sunrise',
+    github: 'https://github.com/anuhtole/recoup',
+    figure: {
+      src: './figures/recoup-system-flow.svg',
+      alt: 'System diagram: read-only sources feed a fixed detection run, a person approves every send, and only a ledger credit closes a case',
+      caption: 'Read-only sources feed a fixed detection run. A person approves every send, and a case closes only when the credit posts on the ledger.',
+    },
+    bullets: [
+      'Reads the three places owed money hides (the ledger, vendor email, and contracts plus public status pages) and surfaces five kinds of leak: duplicate charges, refunds promised by email that never posted, billing after a cancellation, SLA outage credits, and charges above a contract-locked price. Each case lands as Recoverable, Needs review, or Not recoverable, with no confidence scores.',
+      '“The model reads, code decides”: Claude extracts vendor promises as typed structured output with no tools, and a proposal becomes a case only if the sender’s domain is in the vendor directory, the quote appears verbatim in the email, and the amount equals a number in that quote. A fully hijacked extractor in the test suite produces zero harmful actions.',
+      'Three read-only connectors behind one interface: Ramp card transactions, Gmail restricted to DMARC- or DKIM-verified vendor domains, and live vendor status pages (Jira, Confluence, GitHub) priced per component against each vendor’s published SLA.',
+      'A chat agent on a short leash answers “What is my company owed?” with six tools, none of which can send; the demo scan reads 15 vendor emails against 455 transactions and finds 15 claims worth $13.7k across 11 vendors, then drafts the urgent ones for one-slide human approval.',
+      'FastAPI, SQLAlchemy, and Alembic backend with a React and TypeScript front end; 370 tests at 95% line coverage, strict mypy, idempotent ingest and detection, and 14 architecture decision records.',
     ],
   },
   {
@@ -71,6 +118,17 @@ const PROJECTS: Project[] = [
   },
 ]
 
+function ProjectFigure({ figure }: { figure: Figure }) {
+  return (
+    <figure className="mt-7 overflow-hidden rounded-xs border border-line/60 bg-surface">
+      <img src={figure.src} alt={figure.alt} loading="lazy" className="block w-full" />
+      <figcaption className="border-t border-line/40 px-4 py-3 font-mono text-[11px] leading-relaxed tracking-wide text-ink-dim">
+        {figure.caption}
+      </figcaption>
+    </figure>
+  )
+}
+
 function ProjectCard({ project }: { project: Project }) {
   return (
     <li className="overflow-hidden rounded-xs border border-line/60 bg-dusk/70 transition-colors hover:border-gold/40">
@@ -103,6 +161,7 @@ function ProjectCard({ project }: { project: Project }) {
               </li>
             ))}
           </ul>
+          {project.figure && <ProjectFigure figure={project.figure} />}
           {project.publication && <PublicationNote publication={project.publication} />}
           {project.github && (
             <a
